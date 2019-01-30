@@ -10,3 +10,11 @@ nsrr_website = function() {
   website
 }
 
+#' @export
+#' @rdname nsrr_website
+nsrr_api_url = function() {
+  website = nsrr_website()
+  url = paste0(website, "/api/v1/")
+  url
+}
+

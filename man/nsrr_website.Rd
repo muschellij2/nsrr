@@ -2,9 +2,12 @@
 % Please edit documentation in R/nsrr_website.R
 \name{nsrr_website}
 \alias{nsrr_website}
+\alias{nsrr_api_url}
 \title{The NSRR Website URL}
 \usage{
 nsrr_website()
+
+nsrr_api_url()
 }
 \value{
 A character value of the website

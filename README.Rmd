@@ -17,8 +17,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of nsrr is to allow users to access data from the National Sleep
-    Research Resource ('NSRR') (https://sleepdata.org/).
+The goal of nsrr is to allow users to access data from the National Sleep Research Resource ('NSRR') (https://sleepdata.org/).
 
 ## Installation
 
