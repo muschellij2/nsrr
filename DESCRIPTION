@@ -19,3 +19,5 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
+URL: https://github.com/muschellij2/nsrr
+BugReports: https://github.com/muschellij2/nsrr/issues
