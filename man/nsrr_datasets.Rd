@@ -7,7 +7,7 @@
 \usage{
 nsrr_datasets(token = nsrr_token())
 
-nsrr_dataset_files(dataset = NULL, token = nsrr_token())
+nsrr_dataset_files(dataset = NULL, path = NULL, token = nsrr_token())
 }
 \arguments{
 \item{token}{Token for NSRR resources.  Found at
@@ -15,6 +15,8 @@ nsrr_dataset_files(dataset = NULL, token = nsrr_token())
 
 \item{dataset}{a dataset \code{"slug"}, one from
 \code{\link{nsrr_datasets}}}
+
+\item{path}{a folder or file path inside the dataset}
 }
 \value{
 A \code{data.frame} of the data sets and their endpoints
@@ -25,7 +27,14 @@ NSRR data sets
 \examples{
 df = nsrr_datasets()
 testthat::expect_is(df, "data.frame")
-dataset = "chat"
+dataset = "shhs"
 token = NULL
+df = nsrr_dataset_files(dataset)
+ddf = nsrr_dataset_files(dataset, path = df$full_path[1])
+
+
+dataset = "shhs"
+token = NULL
+df = nsrr_dataset_files(dataset)
 nsrr_dataset_files("wecare")
 }

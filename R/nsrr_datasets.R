@@ -32,12 +32,22 @@ nsrr_datasets = function(token = nsrr_token()) {
 #' @rdname nsrr_datasets
 #' @param dataset a dataset \code{"slug"}, one from
 #' \code{\link{nsrr_datasets}}
+#' @param path a folder or file path inside the dataset
 #' @examples
-#' dataset = "chat"
+#' dataset = "shhs"
 #' token = NULL
+#' df = nsrr_dataset_files(dataset)
+#' ddf = nsrr_dataset_files(dataset, path = df$full_path[1])
+#'
+#'
+#' dataset = "shhs"
+#' token = NULL
+#' df = nsrr_dataset_files(dataset)
 #' nsrr_dataset_files("wecare")
 nsrr_dataset_files = function(
-  dataset = NULL, token = nsrr_token()) {
+  dataset = NULL,
+  path = NULL,
+  token = nsrr_token()) {
   msg = "Need to specify one data set"
   if (is.null(dataset)) {
     stop(msg)
@@ -56,6 +66,7 @@ nsrr_dataset_files = function(
   }
   query = list()
   query$auth_token = token
+  query$path = path
   res = httr::GET(url, query = query)
   httr::stop_for_status(res)
   cr = httr::content(res)
@@ -67,3 +78,5 @@ nsrr_dataset_files = function(
   x = jsonlite::fromJSON(x, flatten = TRUE)
   return(x)
 }
+
+
