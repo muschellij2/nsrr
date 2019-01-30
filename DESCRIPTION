@@ -1,0 +1,21 @@
+Type: Package
+Package: nsrr
+Title: Interface to National Sleep Research Resource
+Version: 0.1.0
+Authors@R: 
+    person(given = "John",
+           family = "Muschelli",
+           role = c("aut", "cre"),
+           email = "muschellij2@gmail.com",
+           comment = c(ORCID = "0000-0001-6469-1750"))
+Description: Allows users to access data from the National Sleep
+    Research Resource ('NSRR').
+License: GPL-3
+Suggests: 
+    covr,
+    knitr,
+    rmarkdown,
+    testthat
+Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr

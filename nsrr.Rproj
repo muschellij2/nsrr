@@ -1,0 +1,14 @@
+Version: 1.0
+RestoreWorkspace: no
+SaveWorkspace: no
+AlwaysSaveHistory: Default
+EnableCodeIndexing: yes
+Encoding: UTF-8
+AutoAppendNewline: yes
+StripTrailingWhitespace: yes
+BuildType: Package
+PackageUseDevtools: yes
+PackageInstallArgs: --no-multiarch --with-keep.source
+PackageRoxygenize: rd,collate,namespace,vignette
+PackageCheckArgs: --as-cran
+
