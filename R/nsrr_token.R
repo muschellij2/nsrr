@@ -10,16 +10,19 @@
 #' is.null(nsrr_token())
 #' if (!is.null(nsrr_token())) {
 #'    res = nsrr_auth()
+#'    res$authenticated
 #' }
+#' bad_res = nsrr_auth("")
+#' bad_res$authenticated
+
 nsrr_token = function(token = NULL) {
-  if (token == "") {
-    token = NULL
-  }
   if (is.null(token)) {
     token = Sys.getenv("NSRR_TOKEN")
   }
-  if (token == "") {
-    token = NULL
+  if (length(token) > 0) {
+    if (token == "") {
+      token = NULL
+    }
   }
   token = trimws(token)
   if (length(token) == 0) {

@@ -7,7 +7,8 @@
 #' @export
 #'
 #' @examples
-#' nsrr_datasets()
+#' df = nsrr_datasets()
+#' testthat::expect_is(df, "data.frame")
 nsrr_datasets = function(token = nsrr_token()) {
   website = nsrr_website()
   datasets = paste0(website, "/datasets.json")
