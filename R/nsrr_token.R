@@ -36,7 +36,7 @@ nsrr_token = function(token = NULL) {
 nsrr_auth = function(token = NULL) {
   token = nsrr_token(token = token)
 
-  url = paste0(nsrr_api_url(), "account/profile.json")
+  url = paste0(nsrr_api_url(), "/account/profile.json")
 
   query = list()
   query$auth_token = token

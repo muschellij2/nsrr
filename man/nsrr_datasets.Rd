@@ -2,13 +2,19 @@
 % Please edit documentation in R/nsrr_datasets.R
 \name{nsrr_datasets}
 \alias{nsrr_datasets}
+\alias{nsrr_dataset_files}
 \title{NSRR data sets}
 \usage{
 nsrr_datasets(token = nsrr_token())
+
+nsrr_dataset_files(dataset = NULL, token = nsrr_token())
 }
 \arguments{
 \item{token}{Token for NSRR resources.  Found at
 \url{https://sleepdata.org/token}}
+
+\item{dataset}{a dataset \code{"slug"}, one from
+\code{\link{nsrr_datasets}}}
 }
 \value{
 A \code{data.frame} of the data sets and their endpoints
@@ -19,4 +25,7 @@ NSRR data sets
 \examples{
 df = nsrr_datasets()
 testthat::expect_is(df, "data.frame")
+dataset = "chat"
+token = NULL
+nsrr_dataset_files("wecare")
 }
