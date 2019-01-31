@@ -13,7 +13,6 @@
 #' dataset = "shhs"
 #' df = nsrr_all_dataset_files(dataset)
 #' }
-#'
 nsrr_all_dataset_files = function(dataset, token = nsrr_token()) {
   df = nsrr_dataset_files(dataset, path = NULL, token = token)
   df$is_folder = !df$is_file
@@ -28,4 +27,3 @@ nsrr_all_dataset_files = function(dataset, token = nsrr_token()) {
   }
   return(df)
 }
-

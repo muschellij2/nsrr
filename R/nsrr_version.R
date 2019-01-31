@@ -14,6 +14,7 @@ nsrr_version = function() {
 
 #' @export
 #' @rdname nsrr_version
+#' @importFrom stats na.omit
 nsrr_online_version = function() {
   url = "https://raw.githubusercontent.com/nsrr/nsrr-gem/master/lib/nsrr/version.rb"
   res = httr::GET(url)
@@ -28,15 +29,15 @@ nsrr_online_version = function() {
   ss =  sub("#.*", "", ss)
   ss = strsplit(ss, " ")
   n_ss = sapply(ss, function(x) {
-    xx =x[grepl(search_string, x)]
+    xx = x[grepl(search_string, x)]
     stopifnot(length(xx) <= 1)
     xx
   })
   names(ss) = n_ss
   ss = sapply(ss, function(x) {
-    xx =x[!grepl(search_string, x)]
+    xx = x[!grepl(search_string, x)]
     xx = xx[ xx != "="]
-    xx = xx[ xx!= ""]
+    xx = xx[ xx != ""]
     if (length(xx) == 0) {
       xx = ""
     }
@@ -46,7 +47,7 @@ nsrr_online_version = function() {
   ss
   ss = sub(" = ", "=", ss)
   m = match(names(ss), ords)
-  m = na.omit(m)
+  m = stats::na.omit(m)
   ss = ss[ m ]
   ss = paste(ss, collapse = ".")
   ss = sub("[.]$", "", ss)
