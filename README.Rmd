@@ -31,12 +31,55 @@ You can install the released version of nsrr from [CRAN](https://CRAN.R-project.
 install.packages("nsrr")
 ```
 
-## Example
+## Token
 
-This is a basic example which shows you how to solve a common problem:
+To retrieve your NSRR token, go to https://sleepdata.org/dashboard, and sign in.  This token will allow you access to any data sets you have requested access to.  If you do not have access, then it will allow you to download files that are publicly available.
 
+Set the token by adding this to your `~/.Renviron` file:
+```r
+NSRR_TOKEN="YOUR TOKEN GOES HERE"
+```
+The token is accessible via `token = Sys.getenv("NSRR_TOKEN")`.  Each `nsrr` function also has the argument `token` to pass through if you do not wish to set it.
+
+To determmine if you are authenticated, you can use:
+```{r}
+library(nsrr)
+nsrr_auth()
+```
+
+## Examples
+
+### NSRR data sets 
+Here is how you can access the NSRR datasets list:
 ```{r example}
 library(nsrr)
 df = nsrr_datasets()
 DT::datatable(df)
 ```
+
+### NSRR data set files
+
+Here we first get a list of the files in the `datasets` sub-directory from the `shhs` data set: 
+```{r ls}
+df = nsrr_dataset_files("shhs", path = "datasets")
+head(df)
+```
+
+### Downloading NSRR data set files
+
+We can then download the `CHANGELOG.md` file as it's publicly accessible.
+```{r dl}
+url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
+# print URL
+dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
+dl$outfile
+head(readLines(dl$outfile))
+```
+
+### Listing All NSRR data set files
+
+To list all the files, recursively, you would run:
+```{r, eval = FALSE}
+nsrr_all_dataset_files("shhs")
+```
+but it may take some time.
