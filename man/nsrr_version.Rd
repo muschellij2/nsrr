@@ -2,15 +2,12 @@
 % Please edit documentation in R/nsrr_version.R
 \name{nsrr_version}
 \alias{nsrr_version}
-\alias{nsrr_online_version}
-\alias{nsrr_check_version}
+\alias{nsrr_gem_version}
 \title{NSRR Gem version online}
 \usage{
 nsrr_version()
 
-nsrr_online_version()
-
-nsrr_check_version()
+nsrr_gem_version()
 }
 \value{
 A character of the version
@@ -20,7 +17,6 @@ NSRR Gem version online
 }
 \examples{
 nsrr_version()
-nsrr_online_version()
-nsrr_check_version()
+nsrr_gem_version()
 
 }

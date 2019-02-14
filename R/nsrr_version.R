@@ -5,17 +5,18 @@
 #'
 #' @examples
 #' nsrr_version()
-#' nsrr_online_version()
-#' nsrr_check_version()
+#' nsrr_gem_version()
 #'
 nsrr_version = function() {
-  "0.4.0"
+  # "0.4.0"
+  ver = packageVersion("nsrr")
+  as.character(ver)
 }
 
 #' @export
 #' @rdname nsrr_version
 #' @importFrom stats na.omit
-nsrr_online_version = function() {
+nsrr_gem_version = function() {
   url = "https://raw.githubusercontent.com/nsrr/nsrr-gem/master/lib/nsrr/version.rb"
   res = httr::GET(url)
   httr::stop_for_status(res)
@@ -55,8 +56,3 @@ nsrr_online_version = function() {
   ss
 }
 
-#' @export
-#' @rdname nsrr_version
-nsrr_check_version = function() {
-  nsrr_version() == nsrr_online_version()
-}

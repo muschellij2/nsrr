@@ -28,6 +28,7 @@ A \code{data.frame} of the data sets and their endpoints
 NSRR Download file
 }
 \examples{
+if (nsrr_authenticated()) {
 dataset = "shhs"
 path = "datasets/shhs-data-dictionary-0.13.1-domains.csv"
 nsrr_download_url(dataset, path)
@@ -35,4 +36,5 @@ res = nsrr_download_file(dataset, path)
 testthat::expect_true(res$success)
 path = "biostatistics-with-r/shhs1.txt"
 res = nsrr_download_file(dataset, path)
+}
 }

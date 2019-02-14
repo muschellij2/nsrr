@@ -44,3 +44,11 @@ nsrr_auth = function(token = NULL) {
   result = httr::content(res)
   result
 }
+
+#' @export
+#' @rdname nsrr_token
+nsrr_authenticated = function(token = NULL) {
+  auth = nsrr_auth(token = token)
+  auth$authenticated
+}
+

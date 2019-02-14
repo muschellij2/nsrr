@@ -3,11 +3,14 @@
 \name{nsrr_token}
 \alias{nsrr_token}
 \alias{nsrr_auth}
+\alias{nsrr_authenticated}
 \title{NSRR Token}
 \usage{
 nsrr_token(token = NULL)
 
 nsrr_auth(token = NULL)
+
+nsrr_authenticated(token = NULL)
 }
 \arguments{
 \item{token}{Token for NSRR resources.  Found at
