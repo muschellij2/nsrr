@@ -74,7 +74,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-cat(readLines(dl$outfile), sep = "\n")
+cat(head(readLines(dl$outfile)), sep = "\n")
 ```
 
 ### Listing All NSRR data set files
