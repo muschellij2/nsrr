@@ -16,7 +16,8 @@ Imports:
     jsonlite,
     tools,
     digest,
-    stats
+    stats,
+    utils
 Suggests: 
     covr,
     DT,

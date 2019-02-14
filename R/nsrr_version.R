@@ -2,6 +2,8 @@
 #'
 #' @return A character of the version
 #' @export
+#' @importFrom utils packageVersion
+#'
 #'
 #' @examples
 #' nsrr_version()
@@ -9,7 +11,7 @@
 #'
 nsrr_version = function() {
   # "0.4.0"
-  ver = packageVersion("nsrr")
+  ver = utils::packageVersion("nsrr")
   as.character(ver)
 }
 
