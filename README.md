@@ -1,17 +1,16 @@
 
-[![Travis build
-status](https://travis-ci.com/muschellij2/nsrr.svg?branch=master)](https://travis-ci.com/muschellij2/nsrr)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/nsrr?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/nsrr)
-[![Coverage
-status](https://codecov.io/gh/muschellij2/nsrr/branch/master/graph/badge.svg)](https://codecov.io/gh/muschellij2/nsrr)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # nsrr
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/muschellij2/nsrr.svg?branch=master)](https://travis-ci.com/muschellij2/nsrr)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/nsrr?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/nsrr)
+[![Coverage
+status](https://codecov.io/gh/muschellij2/nsrr/branch/master/graph/badge.svg)](https://codecov.io/gh/muschellij2/nsrr)
 <!-- badges: end -->
 
 The goal of nsrr is to allow users to access data from the National
@@ -122,7 +121,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-#> [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpGtgp18/file3f9d61f8098f.md"
+#> [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpFUSpqU/file403210c1f201.md"
 head(readLines(dl$outfile))
 #> [1] "## 0.13.1 (December 20, 2017)"             
 #> [2] ""                                          
