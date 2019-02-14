@@ -14,7 +14,6 @@
 #' }
 #' bad_res = nsrr_auth("")
 #' bad_res$authenticated
-
 nsrr_token = function(token = NULL) {
   if (is.null(token)) {
     token = Sys.getenv("NSRR_TOKEN")
@@ -29,6 +28,12 @@ nsrr_token = function(token = NULL) {
     token = NULL
   }
   token
+}
+
+#' @export
+#' @rdname nsrr_token
+nsrr_have_token = function(token = NULL) {
+  !is.null(nsrr_token(token = token))
 }
 
 #' @export

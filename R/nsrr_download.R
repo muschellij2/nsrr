@@ -9,10 +9,10 @@
 #' @importFrom tools file_ext
 #'
 #' @examples
-#' if (nsrr_authenticated()) {
 #' dataset = "shhs"
 #' path = "datasets/shhs-data-dictionary-0.13.1-domains.csv"
-#' nsrr_download_url(dataset, path)
+#' nsrr_download_url(dataset, path, token = "")
+#' if (nsrr_have_token()) {
 #' res = nsrr_download_file(dataset, path)
 #' testthat::expect_true(res$success)
 #' path = "biostatistics-with-r/shhs1.txt"
@@ -23,17 +23,25 @@ nsrr_download_url = function(
   path,
   token = nsrr_token()
 ) {
-  stopifnot(!is.null(token))
-  stopifnot(length(token) == 1)
+  # stopifnot(!is.null(token))
+  # stopifnot(length(token) == 1)
   ver = nsrr_version()
 
+  if (!is.null(token)) {
+    if (token == "") {
+      token = NULL
+    }
+  }
   fname = file.path(
     nsrr_website(),
     "datasets",
     dataset,
-    "files",
-    "a",
-    token,
+    "files")
+  if (!is.null(token)) {
+    fname = file.path(fname, paste0("a/", token))
+  }
+  fname = file.path(
+    fname,
     "m",
     paste0("nsrr-r-v", gsub("[.]", "-", ver)),
     # paste0("nsrr-gem-v", gsub("[.]", "-", ver)),

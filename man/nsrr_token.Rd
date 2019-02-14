@@ -2,11 +2,14 @@
 % Please edit documentation in R/nsrr_token.R
 \name{nsrr_token}
 \alias{nsrr_token}
+\alias{nsrr_have_token}
 \alias{nsrr_auth}
 \alias{nsrr_authenticated}
 \title{NSRR Token}
 \usage{
 nsrr_token(token = NULL)
+
+nsrr_have_token(token = NULL)
 
 nsrr_auth(token = NULL)
 
