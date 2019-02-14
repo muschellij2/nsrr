@@ -42,7 +42,7 @@ NSRR_TOKEN="YOUR TOKEN GOES HERE"
 ```
 The token is accessible via `token = Sys.getenv("NSRR_TOKEN")`.  Each `nsrr` function also has the argument `token` to pass through if you do not wish to set it.
 
-To determmine if you are authenticated, you can use:
+To determine if you are authenticated, you can use:
 ```{r}
 library(nsrr)
 nsrr_auth()

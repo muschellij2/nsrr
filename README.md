@@ -42,7 +42,7 @@ The token is accessible via `token = Sys.getenv("NSRR_TOKEN")`. Each
 `nsrr` function also has the argument `token` to pass through if you do
 not wish to set it.
 
-To determmine if you are authenticated, you can use:
+To determine if you are authenticated, you can use:
 
 ``` r
 library(nsrr)
@@ -121,7 +121,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-#> [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpFUSpqU/file403210c1f201.md"
+#> [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpV6olJp/file40cb2ba8aca1.md"
 head(readLines(dl$outfile))
 #> [1] "## 0.13.1 (December 20, 2017)"             
 #> [2] ""                                          
