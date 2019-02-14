@@ -33,7 +33,7 @@ nsrr_download_url = function(
     "a",
     token,
     "m",
-    paste0("nsrr-gem-v", gsub("[.]", "-", ver)),
+    paste0("nsrr-r-v0-1-0"),
     path)
   return(fname)
 }
