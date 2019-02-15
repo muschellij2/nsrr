@@ -58,3 +58,9 @@ nsrr_gem_version = function() {
   ss
 }
 
+
+#' @export
+#' @rdname nsrr_version
+nsrr_api_version = function() {
+  "v1"
+}

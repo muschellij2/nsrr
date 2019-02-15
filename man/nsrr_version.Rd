@@ -3,11 +3,14 @@
 \name{nsrr_version}
 \alias{nsrr_version}
 \alias{nsrr_gem_version}
+\alias{nsrr_api_version}
 \title{NSRR Gem version online}
 \usage{
 nsrr_version()
 
 nsrr_gem_version()
+
+nsrr_api_version()
 }
 \value{
 A character of the version

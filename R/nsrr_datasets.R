@@ -12,8 +12,11 @@
 #' @examples
 #' df = nsrr_datasets()
 #' testthat::expect_is(df, "data.frame")
+#' slugs = c("shhs", "chat", "heartbeat", "cfs", "sof", "mros", "ccshs",
+#' "hchs", "haassa", "mesa", "learn", "homepap")
+#' testthat::expect_true(all(slugs %in% df$slug))
 nsrr_datasets = function(token = nsrr_token()) {
-  website = nsrr_website()
+  website = nsrr_api_url()
   datasets = paste0(website, "/datasets.json")
   query = list()
   query$auth_token = token
