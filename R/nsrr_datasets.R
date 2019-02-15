@@ -2,6 +2,9 @@
 #' NSRR data sets
 #'
 #' @inheritParams nsrr_token
+#' @param page which page to grab.  Increment over successive requests to
+#' retrieve all datasets. A request that return NULL or a number of datasets
+#' less than 18 indicates the last page.
 #'
 #' @return A \code{data.frame} of the data sets and their endpoints
 #' @export
@@ -15,11 +18,13 @@
 #' slugs = c("shhs", "chat", "heartbeat", "cfs", "sof", "mros", "ccshs",
 #' "hchs", "haassa", "mesa", "learn", "homepap")
 #' testthat::expect_true(all(slugs %in% df$slug))
-nsrr_datasets = function(token = nsrr_token()) {
+nsrr_datasets = function(token = nsrr_token(),
+                         page = NULL) {
   website = nsrr_api_url()
   datasets = paste0(website, "/datasets.json")
   query = list()
   query$auth_token = token
+  query$page = page
   res = httr::GET(datasets, query = query)
   x = httr::content(res, as = "text")
   x = jsonlite::fromJSON(x, flatten = TRUE)
@@ -28,6 +33,24 @@ nsrr_datasets = function(token = nsrr_token()) {
   x$files = sub(".json", "", x$path)
   x$files = paste0(x$files, "/files.json")
 
+  return(x)
+}
+
+#' @export
+#' @rdname nsrr_datasets
+#' @examples
+#' nsrr_dataset(dataset = "shhs", token = "")
+nsrr_dataset = function(
+  dataset = NULL,
+  token = nsrr_token()) {
+
+  website = nsrr_api_url()
+  datasets = paste0(website, "/datasets/", dataset, ".json")
+  query = list()
+  query$auth_token = token
+  res = httr::GET(datasets, query = query)
+  x = httr::content(res, as = "text")
+  x = jsonlite::fromJSON(x, flatten = TRUE)
   return(x)
 }
 

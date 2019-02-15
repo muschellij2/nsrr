@@ -2,16 +2,23 @@
 % Please edit documentation in R/nsrr_datasets.R
 \name{nsrr_datasets}
 \alias{nsrr_datasets}
+\alias{nsrr_dataset}
 \alias{nsrr_dataset_files}
 \title{NSRR data sets}
 \usage{
-nsrr_datasets(token = nsrr_token())
+nsrr_datasets(token = nsrr_token(), page = NULL)
+
+nsrr_dataset(dataset = NULL, token = nsrr_token())
 
 nsrr_dataset_files(dataset = NULL, path = NULL, token = nsrr_token())
 }
 \arguments{
 \item{token}{Token for NSRR resources.  Found at
 \url{https://sleepdata.org/token}}
+
+\item{page}{which page to grab.  Increment over successive requests to
+retrieve all datasets. A request that return NULL or a number of datasets
+less than 18 indicates the last page.}
 
 \item{dataset}{a dataset \code{"slug"}, one from
 \code{\link{nsrr_datasets}}}
@@ -30,6 +37,7 @@ testthat::expect_is(df, "data.frame")
 slugs = c("shhs", "chat", "heartbeat", "cfs", "sof", "mros", "ccshs",
 "hchs", "haassa", "mesa", "learn", "homepap")
 testthat::expect_true(all(slugs \%in\% df$slug))
+nsrr_dataset(dataset = "shhs", token = "")
 dataset = "shhs"
 token = NULL
 df = nsrr_dataset_files(dataset)
