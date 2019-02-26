@@ -120,7 +120,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmpj7mskJ/filec93523beee3a.md"
+[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpJyi0w3/fileca1c69517ff8.md"
 cat(head(readLines(dl$outfile)), sep = "\n")
 ## 0.13.1 (December 20, 2017)
 
