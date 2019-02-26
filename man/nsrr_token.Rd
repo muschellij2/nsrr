@@ -34,4 +34,5 @@ if (!is.null(nsrr_token())) {
 bad_res = nsrr_auth("")
 bad_res$authenticated
 nsrr_have_token()
+nsrr_authenticated()
 }

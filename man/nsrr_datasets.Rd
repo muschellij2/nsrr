@@ -48,4 +48,7 @@ dataset = "shhs"
 token = NULL
 df = nsrr_dataset_files(dataset)
 nsrr_dataset_files("wecare")
+
+testthat::expect_error(nsrr_dataset_files(), "one data")
+testthat::expect_error(nsrr_dataset_files(c("shhs", "chat")), "one data")
 }

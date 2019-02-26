@@ -4,7 +4,7 @@
 \alias{nsrr_all_dataset_files}
 \title{NSRR All Dataset files}
 \usage{
-nsrr_all_dataset_files(dataset, token = nsrr_token())
+nsrr_all_dataset_files(dataset, token = nsrr_token(), max_files = Inf)
 }
 \arguments{
 \item{dataset}{a dataset \code{"slug"}, one from
@@ -12,6 +12,9 @@ nsrr_all_dataset_files(dataset, token = nsrr_token())
 
 \item{token}{Token for NSRR resources.  Found at
 \url{https://sleepdata.org/token}}
+
+\item{max_files}{maximum files to return if not wanting to go through
+all folders recursively.}
 }
 \value{
 A \code{data.frame} of the data sets and their endpoints
@@ -20,8 +23,11 @@ A \code{data.frame} of the data sets and their endpoints
 NSRR All Dataset files
 }
 \examples{
-\dontrun{
 dataset = "shhs"
+df = nsrr_all_dataset_files(dataset, max_files = 100)
+testthat::expect_lte(nrow(df), 150)
+\dontrun{
 df = nsrr_all_dataset_files(dataset)
 }
+
 }

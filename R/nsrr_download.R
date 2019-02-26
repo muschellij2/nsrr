@@ -18,6 +18,14 @@
 #' path = "biostatistics-with-r/shhs1.txt"
 #' res = nsrr_download_file(dataset, path)
 #' }
+#' url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md",
+#' token = NULL)
+#' res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
+#' token = NULL)
+#' testthat::expect_true(res$correct_md5)
+#' res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
+#' token = NULL, check_md5 = FALSE)
+#' testthat::expect_null(res$correct_md5)
 nsrr_download_url = function(
   dataset,
   path,
@@ -93,8 +101,10 @@ nsrr_download_file = function(
   L = list(response = res,
            outfile = tfile,
            correct_size = correct_size,
-           correct_md5 = correct_md5,
            success = success
   )
+  if (check_md5) {
+    L$correct_md5 = correct_md5
+  }
   return(L)
 }

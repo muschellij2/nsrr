@@ -70,6 +70,9 @@ nsrr_dataset = function(
 #' token = NULL
 #' df = nsrr_dataset_files(dataset)
 #' nsrr_dataset_files("wecare")
+#'
+#' testthat::expect_error(nsrr_dataset_files(), "one data")
+#' testthat::expect_error(nsrr_dataset_files(c("shhs", "chat")), "one data")
 nsrr_dataset_files = function(
   dataset = NULL,
   path = NULL,
