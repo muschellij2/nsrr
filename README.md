@@ -14,7 +14,21 @@ status](https://codecov.io/gh/muschellij2/nsrr/branch/master/graph/badge.svg)](h
 <!-- badges: end -->
 
 The goal of nsrr is to allow users to access data from the National
-Sleep Research Resource (’NSRR’) (<https://sleepdata.org/>).
+Sleep Research Resource (’NSRR’) (<https://sleepdata.org/>) through an
+`R` interface.
+
+Why `R`? Many packages in `R` can read and process accelerometry, such
+as the [`GGIR`](https://cran.r-project.org/package=GGIR),
+[`ActivityIndex`](https://cran.r-project.org/package=ActivityIndex), and
+[`accelerometry`](https://cran.r-project.org/package=accelerometry);
+other packages such as
+[`edfReader`](https://cran.r-project.org/package=edfReader) can read in
+EDF data for polysomnography data. Also, the
+[`xml2`](https://cran.r-project.org/package=xml2) package can easily
+read in XML annotations into `R`. We believe the interplay with these
+packages, amongst others, allow for a flexible framework to download,
+process, and visualize data. The `nsrr` package is simply the entry
+point into navigating the files available and downloading the data.
 
 ## Installation
 
@@ -106,7 +120,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpMeg78M/file4cf85b119767.md"
+[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmpj7mskJ/filec93523beee3a.md"
 cat(head(readLines(dl$outfile)), sep = "\n")
 ## 0.13.1 (December 20, 2017)
 
@@ -124,3 +138,14 @@ nsrr_all_dataset_files("shhs")
 ```
 
 but it may take some time.
+
+### EDF files
+
+The [`edfReader`](https://cran.r-project.org/package=edfReader) can read
+in EDF fiels for polysomnography data. **WIP - need access to EDF
+data**.
+
+``` r
+files = nsrr_dataset_files("shhs", path= "polysomnography/edfs/shhs1")
+dl = nsrr_download_file("shhs", path = "polysomnography/edfs/shhs1/shhs1-200001.edf")
+```
