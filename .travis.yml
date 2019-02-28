@@ -2,11 +2,13 @@ language: R
 cache: packages
 after_success: if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'covr::codecov(type
   = "all")'; fi
-warnings_are_errors: yes
+warnings_are_errors: true
 before_deploy: if [ "$TRAVIS_OS_NAME" == "osx" ]; then rm -f *.tar.gz; fi
-r_check_args: --as-cran --install-args=--build
+r_check_args: "--as-cran --install-args=--build"
 deploy:
   provider: releases
+  api_key:
+    secure: dj8xZ/EqviDKl773mxbVPSX74ZUj/O551GGNR0m3OleiDUKWbrw15nbM2Pob3FAmrnM9VsKwJQ1hjCi6L9EXO3bWCQpf3K+xzkBF2KEBCCOkKTvQ46qMlTl25ynOMEBbDnH2mjuyzPzeV5/JfiAHNgDA//6suSVe97jbE5s7bDg2J7r+8izePg44q+pFhStKYP6pbmC4/TorJ+V8l2y2OhSRwq8/3+z1FQqDzLKbpk4/4BhC4/QfMAeFofBXWcBcqlHttx8CM3LSi6EoByFfJ3G53fyC3SsjaBM9Jmd+xXerjtAbpgJZDUCUZX4kOGkbs6a8SwLGBfPfiI0/+YeDDswRYrzoAFL18VunCN52LBLIoA1NN8LwM5+b2aCYe30fpM1LkEALzCZV4ZsupLw+U/GYnL9PS2sDthU6F4dUh7ZTshixW5V3EeLSS2yEkdZ62zZQ+bZVZnLos9jrz/BJum1CO7+fwzmIR4bGO4Ib4nmjhRxljp7pFnJnGXiZQUOubPlclt7fg1qnWd99aVx23gzhbIE5fZI6e6qsGAexTxiYRPjmoydG035azEj9/3cK/7PyFDGAW/zsXJXxxGzN2Kbzacl7TQav2J82sDn2zAvZUZi0V9XaRHY9bCP0D0Gc2Dvh/ib3WTbP9GFyp7uPtZUzfuiJ82etHOkFmS+MtQw=
   skip_cleanup: yes
   file_glob: yes
   file: nsrr*.t*gz
