@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nsrr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -160,13 +160,18 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>
-<span class='no'>path</span> <span class='kw'>=</span> <span class='st'>"datasets/shhs-data-dictionary-0.13.1-domains.csv"</span>
-<span class='fu'>nsrr_download_url</span>(<span class='no'>dataset</span>, <span class='no'>path</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='output co'>#&gt; [1] "https://sleepdata.org/datasets/shhs/files/m/nsrr-r-v0-1-0/datasets/shhs-data-dictionary-0.13.1-domains.csv"</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='nsrr_token.html'>nsrr_have_token</a></span>()) {
+<span class='no'>path</span> <span class='kw'>=</span> <span class='st'>"datasets/shhs-data-dictionary-0.13.2-domains.csv"</span>
+<span class='fu'>nsrr_download_url</span>(<span class='no'>dataset</span>, <span class='no'>path</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='output co'>#&gt; [1] "https://sleepdata.org/datasets/shhs/files/m/nsrr-r-v0-1-2/datasets/shhs-data-dictionary-0.13.2-domains.csv"</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='nsrr_token.html'>nsrr_have_token</a></span>()) {
 <span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>nsrr_download_file</span>(<span class='no'>dataset</span>, <span class='no'>path</span>)
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/logical-expectations'>expect_true</a></span>(<span class='no'>res</span>$<span class='no'>success</span>)
 <span class='no'>path</span> <span class='kw'>=</span> <span class='st'>"biostatistics-with-r/shhs1.txt"</span>
 <span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>nsrr_download_file</span>(<span class='no'>dataset</span>, <span class='no'>path</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: Not successful download - likely not authorized for resource</span></div></pre>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'><span class='no'>url</span> <span class='kw'>=</span> <span class='fu'>nsrr_download_url</span>(<span class='st'>"shhs"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"datasets/CHANGELOG.md"</span>,
+<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>nsrr_download_file</span>(<span class='st'>"shhs"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"datasets/CHANGELOG.md"</span>,
+<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'><span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/logical-expectations'>expect_true</a></span>(<span class='no'>res</span>$<span class='no'>correct_md5</span>)
+<span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>nsrr_download_file</span>(<span class='st'>"shhs"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"datasets/CHANGELOG.md"</span>,
+<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>check_md5</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'><span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/inheritance-expectations'>expect_null</a></span>(<span class='no'>res</span>$<span class='no'>correct_md5</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

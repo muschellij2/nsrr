@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nsrr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -152,8 +152,8 @@
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='fu'>nsrr_token</span>())</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='kw'>if</span> (!<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='fu'>nsrr_token</span>())) {
    <span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>nsrr_auth</span>()
    <span class='no'>res</span>$<span class='no'>authenticated</span>
-}</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='no'>bad_res</span> <span class='kw'>=</span> <span class='fu'>nsrr_auth</span>(<span class='st'>""</span>)
-<span class='no'>bad_res</span>$<span class='no'>authenticated</span></div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nsrr_have_token</span>()</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+}</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>bad_res</span> <span class='kw'>=</span> <span class='fu'>nsrr_auth</span>(<span class='st'>""</span>)
+<span class='no'>bad_res</span>$<span class='no'>authenticated</span></div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nsrr_have_token</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>nsrr_authenticated</span>()</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

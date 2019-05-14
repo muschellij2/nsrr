@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nsrr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -125,7 +125,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>nsrr_datasets</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'><a href='nsrr_token.html'>nsrr_token</a></span>())
+    <pre class="usage"><span class='fu'>nsrr_datasets</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'><a href='nsrr_token.html'>nsrr_token</a></span>(), <span class='kw'>page</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>nsrr_dataset</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'><a href='nsrr_token.html'>nsrr_token</a></span>())
 
 <span class='fu'>nsrr_dataset_files</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'><a href='nsrr_token.html'>nsrr_token</a></span>())</pre>
     
@@ -136,6 +138,12 @@
       <th>token</th>
       <td><p>Token for NSRR resources.  Found at
 <a href='https://sleepdata.org/token'>https://sleepdata.org/token</a></p></td>
+    </tr>
+    <tr>
+      <th>page</th>
+      <td><p>which page to grab.  Increment over successive requests to
+retrieve all datasets. A request that return NULL or a number of datasets
+less than 18 indicates the last page.</p></td>
     </tr>
     <tr>
       <th>dataset</th>
@@ -155,21 +163,38 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_datasets</span>()
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attributes'>attributes</a></span>(<span class='no'>df</span>)$<span class='no'>status_code</span> <span class='kw'>==</span> <span class='fl'>200</span>) {
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/inheritance-expectations'>expect_is</a></span>(<span class='no'>df</span>, <span class='st'>"data.frame"</span>)
+<span class='no'>slugs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"bestair"</span>, <span class='st'>"chat"</span>, <span class='st'>"ccshs"</span>, <span class='st'>"cfs"</span>,
+<span class='st'>"heartbeat"</span>, <span class='st'>"hchs"</span>, <span class='st'>"homepap"</span>, <span class='st'>"haassa"</span>, <span class='st'>"learn"</span>)
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/logical-expectations'>expect_true</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>slugs</span> <span class='kw'>%in%</span> <span class='no'>df</span>$<span class='no'>slug</span>))
+}
+<span class='fu'>nsrr_dataset</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='output co'>#&gt; $name
+#&gt; [1] "Sleep Heart Health Study"
+#&gt; 
+#&gt; $slug
+#&gt; [1] "shhs"
+#&gt; 
+#&gt; $created_at
+#&gt; [1] "2013-10-23T13:40:01.590-04:00"
+#&gt; 
+#&gt; $updated_at
+#&gt; [1] "2019-03-07T14:20:40.597-05:00"
+#&gt; 
+#&gt; attr(,"status_code")
+#&gt; [1] 200</div><div class='input'><span class='no'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>
+<span class='no'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'><span class='no'>ddf</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>df</span>$<span class='no'>full_path</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'>
+
 <span class='no'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>
 <span class='no'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>)
-<span class='no'>ddf</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>df</span>$<span class='no'>full_path</span>[<span class='fl'>1</span>])
-
-
-<span class='no'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>
-<span class='no'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>)
-<span class='fu'>nsrr_dataset_files</span>(<span class='st'>"wecare"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Content was NULL, returning the response for debuggin</span></div><div class='output co'>#&gt; Response [https://sleepdata.org/api/v1/datasets/wecare/files.json?auth_token=4207-p4ykHMRL6esF2EPxPFzb]
-#&gt;   Date: 2019-02-14 23:39
+<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='input'><span class='fu'>nsrr_dataset_files</span>(<span class='st'>"wecare"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Content was NULL, returning the response for debuggin</span></div><div class='output co'>#&gt; Response [https://sleepdata.org/api/v1/datasets/wecare/files.json?auth_token=4207-xsBwXDB5bhywfH-yPvsc]
+#&gt;   Date: 2019-05-14 02:44
 #&gt;   Status: 204
 #&gt;   Content-Type: application/json
-#&gt; &lt;EMPTY BODY&gt;</div></pre>
+#&gt; &lt;EMPTY BODY&gt;</div><div class='input'>
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/output-expectations'>expect_error</a></span>(<span class='fu'>nsrr_dataset_files</span>(), <span class='st'>"one data"</span>)
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/output-expectations'>expect_error</a></span>(<span class='fu'>nsrr_dataset_files</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"shhs"</span>, <span class='st'>"chat"</span>)), <span class='st'>"one data"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
