@@ -14,10 +14,12 @@
 #'
 #' @examples
 #' df = nsrr_datasets()
+#' if (attributes(df)$status_code == 200) {
 #' testthat::expect_is(df, "data.frame")
-#' slugs = c("shhs", "chat", "heartbeat", "cfs", "sof", "mros", "ccshs",
-#' "hchs", "haassa", "mesa", "learn", "homepap")
+#' slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
+#' "heartbeat", "hchs", "homepap", "haassa", "learn")
 #' testthat::expect_true(all(slugs %in% df$slug))
+#' }
 nsrr_datasets = function(token = nsrr_token(),
                          page = NULL) {
   website = nsrr_api_url()
@@ -33,6 +35,7 @@ nsrr_datasets = function(token = nsrr_token(),
   x$files = sub(".json", "", x$path)
   x$files = paste0(x$files, "/files.json")
 
+  attr(x, "status_code") = httr::status_code(res)
   return(x)
 }
 
@@ -51,6 +54,7 @@ nsrr_dataset = function(
   res = httr::GET(datasets, query = query)
   x = httr::content(res, as = "text")
   x = jsonlite::fromJSON(x, flatten = TRUE)
+  attr(x, "status_code") = httr::status_code(res)
   return(x)
 }
 
@@ -105,6 +109,7 @@ nsrr_dataset_files = function(
   }
   x = httr::content(res, as = "text")
   x = jsonlite::fromJSON(x, flatten = TRUE)
+  attr(x, "status_code") = httr::status_code(res)
   return(x)
 }
 

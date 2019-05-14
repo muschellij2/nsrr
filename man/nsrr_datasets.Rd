@@ -33,10 +33,12 @@ NSRR data sets
 }
 \examples{
 df = nsrr_datasets()
+if (attributes(df)$status_code == 200) {
 testthat::expect_is(df, "data.frame")
-slugs = c("shhs", "chat", "heartbeat", "cfs", "sof", "mros", "ccshs",
-"hchs", "haassa", "mesa", "learn", "homepap")
+slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
+"heartbeat", "hchs", "homepap", "haassa", "learn")
 testthat::expect_true(all(slugs \%in\% df$slug))
+}
 nsrr_dataset(dataset = "shhs", token = "")
 dataset = "shhs"
 token = NULL

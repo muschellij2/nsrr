@@ -29,7 +29,7 @@ NSRR Download file
 }
 \examples{
 dataset = "shhs"
-path = "datasets/shhs-data-dictionary-0.13.1-domains.csv"
+path = "datasets/shhs-data-dictionary-0.13.2-domains.csv"
 nsrr_download_url(dataset, path, token = "")
 if (nsrr_have_token()) {
 res = nsrr_download_file(dataset, path)
