@@ -24,8 +24,8 @@ NSRR All Dataset files
 }
 \examples{
 dataset = "shhs"
-df = nsrr_all_dataset_files(dataset, max_files = 100)
-testthat::expect_lte(nrow(df), 150)
+df = nsrr_all_dataset_files(dataset, max_files = 10)
+testthat::expect_lte(nrow(df), 20)
 \dontrun{
 df = nsrr_all_dataset_files(dataset)
 }
