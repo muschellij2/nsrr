@@ -48,6 +48,8 @@ nsrr_datasets = function(token = nsrr_token(),
     }
   }
   x = do.call("rbind", df)
+  attr(x, "status_code") = unique(x$status_code)
+  x$status_code = NULL
 
   return(x)
 }
