@@ -24,18 +24,31 @@ nsrr_datasets = function(token = nsrr_token(),
                          page = NULL) {
   website = nsrr_api_url()
   datasets = paste0(website, "/datasets.json")
-  query = list()
-  query$auth_token = token
-  query$page = page
-  res = httr::GET(datasets, query = query)
-  x = httr::content(res, as = "text")
-  x = jsonlite::fromJSON(x, flatten = TRUE)
-  x$slug = sub("/datasets/", "", trimws(x$path))
-  x$slug = sub(".json$", "", x$slug)
-  x$files = sub(".json", "", x$path)
-  x$files = paste0(x$files, "/files.json")
+  if (is.null(page)) {
+    pages = 1:10
+  } else {
+    pages = page
+  }
+  df = vector(mode = "list", length = length(pages))
+  for (ipage in seq_along(pages)) {
+    page = pages[ipage]
+    query = list()
+    query$auth_token = token
+    query$page = page
+    res = httr::GET(datasets, query = query)
+    x = httr::content(res, as = "text")
+    x = jsonlite::fromJSON(x, flatten = TRUE)
+    if (NROW(x) > 0) {
+      x$slug = sub("/datasets/", "", trimws(x$path))
+      x$slug = sub(".json$", "", x$slug)
+      x$files = sub(".json", "", x$path)
+      x$files = paste0(x$files, "/files.json")
+      x$status_code = httr::status_code(res)
+      df[[ipage]] = x
+    }
+  }
+  x = do.call("rbind", df)
 
-  attr(x, "status_code") = httr::status_code(res)
   return(x)
 }
 
