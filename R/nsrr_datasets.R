@@ -13,13 +13,15 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#' df = nsrr_datasets(page = 1)
 #' df = nsrr_datasets()
 #' if (attributes(df)$status_code == 200) {
 #' testthat::expect_is(df, "data.frame")
 #' slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
 #' "heartbeat", "hchs", "homepap", "haassa", "learn")
 #' testthat::expect_true(all(slugs %in% df$slug))
+#' }
+#' \donttest{
+#' df = nsrr_datasets(page = 1)
 #' }
 nsrr_datasets = function(token = nsrr_token(),
                          page = NULL) {
