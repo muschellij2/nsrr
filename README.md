@@ -135,7 +135,7 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmp0iOhuM/file8b9b94e1b74.md"
+[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpobAxbi/file8ea84b43a39b.md"
 cat(head(readLines(dl$outfile)), sep = "\n")
 ## 0.14.0 (May 29, 2019)
 
@@ -158,8 +158,8 @@ but it may take some time.
 ### EDF files
 
 The [`edfReader`](https://cran.r-project.org/package=edfReader) can read
-in EDF fiels for polysomnography data. **WIP - need access to EDF
-data**.
+in EDF fields for polysomnography data. **Work in Progress - need access
+to EDF data**.
 
 ``` r
 files = nsrr_dataset_files("shhs", path= "polysomnography/edfs/shhs1")

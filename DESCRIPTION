@@ -23,7 +23,9 @@ Suggests:
     DT,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    xml2,
+    rvest
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr

@@ -32,6 +32,7 @@ A \code{data.frame} of the data sets and their endpoints
 NSRR data sets
 }
 \examples{
+df = nsrr_datasets(page = 1)
 df = nsrr_datasets()
 if (attributes(df)$status_code == 200) {
 testthat::expect_is(df, "data.frame")

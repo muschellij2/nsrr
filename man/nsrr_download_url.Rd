@@ -28,8 +28,18 @@ A \code{data.frame} of the data sets and their endpoints
 NSRR Download file
 }
 \examples{
+if (requireNamespace("xml2", quietly = TRUE) &
+requireNamespace("rvest", quietly = TRUE)) {
+doc = xml2::read_html("https://sleepdata.org/datasets/shhs/files/datasets")
+tab = rvest::html_table(doc)[[1]]
+path = tab$X2
+path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
+path = path[1]
+path = paste0("datasets/", path)
+} else {
+path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
+}
 dataset = "shhs"
-path = "datasets/shhs-data-dictionary-0.13.2-domains.csv"
 nsrr_download_url(dataset, path, token = "")
 if (nsrr_have_token()) {
 res = nsrr_download_file(dataset, path)

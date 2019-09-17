@@ -9,8 +9,18 @@
 #' @importFrom tools file_ext
 #'
 #' @examples
+#' if (requireNamespace("xml2", quietly = TRUE) &
+#' requireNamespace("rvest", quietly = TRUE)) {
+#' doc = xml2::read_html("https://sleepdata.org/datasets/shhs/files/datasets")
+#' tab = rvest::html_table(doc)[[1]]
+#' path = tab$X2
+#' path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
+#' path = path[1]
+#' path = paste0("datasets/", path)
+#' } else {
+#' path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
+#' }
 #' dataset = "shhs"
-#' path = "datasets/shhs-data-dictionary-0.13.2-domains.csv"
 #' nsrr_download_url(dataset, path, token = "")
 #' if (nsrr_have_token()) {
 #' res = nsrr_download_file(dataset, path)
@@ -87,6 +97,10 @@ nsrr_download_file = function(
   if (check_md5) {
     md5 = digest::digest(tfile, file = TRUE, algo = "md5")
     correct_md5 = md5 == file_md5
+    if (length(correct_md5) == 0) {
+      warnings("MD5 file size not found, reporting TRUE")
+      correct_md5 = TRUE
+    }
   } else {
     correct_md5 = TRUE
   }

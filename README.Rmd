@@ -89,7 +89,7 @@ but it may take some time.
 
 ### EDF files
 
-The [`edfReader`](https://cran.r-project.org/package=edfReader) can read in EDF fiels for polysomnography data.  **WIP - need access to EDF data**.
+The [`edfReader`](https://cran.r-project.org/package=edfReader) can read in EDF fields for polysomnography data.  **Work in Progress - need access to EDF data**.
 
 ```{r, eval = FALSE}
 files = nsrr_dataset_files("shhs", path= "polysomnography/edfs/shhs1")
