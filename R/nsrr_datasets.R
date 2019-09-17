@@ -13,6 +13,7 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
+#' df = nsrr_datasets(page = 1)
 #' df = nsrr_datasets()
 #' if (attributes(df)$status_code == 200) {
 #' testthat::expect_is(df, "data.frame")
@@ -25,7 +26,7 @@ nsrr_datasets = function(token = nsrr_token(),
   website = nsrr_api_url()
   datasets = paste0(website, "/datasets.json")
   if (is.null(page)) {
-    pages = 1:10
+    pages = 1:20
   } else {
     pages = page
   }
@@ -44,7 +45,10 @@ nsrr_datasets = function(token = nsrr_token(),
       x$files = sub(".json", "", x$path)
       x$files = paste0(x$files, "/files.json")
       x$status_code = httr::status_code(res)
+      x$page = ipage
       df[[ipage]] = x
+    } else {
+      break
     }
   }
   x = do.call("rbind", df)

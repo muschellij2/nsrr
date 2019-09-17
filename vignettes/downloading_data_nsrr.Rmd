@@ -35,7 +35,7 @@ nsrr_auth()
 
 ### NSRR data sets 
 Here is how you can access the NSRR datasets list:
-```{r example}
+```{r example, screenshot.force=FALSE}
 library(nsrr)
 df = nsrr_datasets()
 DT::datatable(df)

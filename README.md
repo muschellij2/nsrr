@@ -62,7 +62,22 @@ To determine if you are authenticated, you can use:
 library(nsrr)
 nsrr_auth()
 $authenticated
-[1] FALSE
+[1] TRUE
+
+$username
+[1] "muschellij2"
+
+$full_name
+[1] ""
+
+$first_name
+NULL
+
+$last_name
+NULL
+
+$email
+[1] "muschellij2@gmail.com"
 ```
 
 ## Examples
@@ -93,21 +108,21 @@ head(df)
 3    shhs             datasets/hrv-analysis datasets/
 4    shhs             datasets/CHANGELOG.md datasets/
 5    shhs           datasets/KNOWNISSUES.md datasets/
-6    shhs datasets/shhs1-dataset-0.13.0.csv datasets/
+6    shhs datasets/shhs1-dataset-0.14.0.csv datasets/
                  file_name is_file file_size
 1                  archive   FALSE         0
 2    eeg-spectral-analysis   FALSE         0
 3             hrv-analysis   FALSE         0
-4             CHANGELOG.md    TRUE     10175
-5           KNOWNISSUES.md    TRUE     11284
-6 shhs1-dataset-0.13.0.csv    TRUE  24305606
+4             CHANGELOG.md    TRUE     10735
+5           KNOWNISSUES.md    TRUE     11421
+6 shhs1-dataset-0.14.0.csv    TRUE  24322962
                  file_checksum_md5 archived
 1                             <NA>    FALSE
 2                             <NA>    FALSE
 3                             <NA>    FALSE
-4 1432504de974e712e1cd7d99038bdfd5    FALSE
-5 c53ea822afa2e78ba601da508562775d    FALSE
-6 212cf854c1e04ce6d75cb6580917e3a9    FALSE
+4 d791744c06a1ed92bdc0114c27b3bc92    FALSE
+5 8598129123baa60e16977dc24aa780af    FALSE
+6 3f26d37ec97e2bc88776850a31715398    FALSE
 ```
 
 ### Downloading NSRR data set files
@@ -120,13 +135,14 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpJyi0w3/fileca1c69517ff8.md"
+[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmp0iOhuM/file8b9b94e1b74.md"
 cat(head(readLines(dl$outfile)), sep = "\n")
-## 0.13.1 (December 20, 2017)
+## 0.14.0 (May 29, 2019)
 
-- Fix odd symbols in variable descriptions
-
-## 0.13.0 (December 7, 2017)
+- Re-add OXIMET51 variable to SHHS1 dataset
+- Add ESS_INTERIM variable; computed Epworth score for Interim Follow-up Visit (range 0-24)
+- The CSV datasets generated from a SAS export are located here:
+  - `\\rfawin\bwh-sleepepi-shhs\nsrr-prep\_releases\0.14.0\`
 ```
 
 ### Listing All NSRR data set files
