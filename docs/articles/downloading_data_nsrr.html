@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nsrr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -54,6 +54,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/dictionary.html">UNKNOWN TITLE</a>
+    </li>
+    <li>
       <a href="../articles/downloading_data_nsrr.html">Downloading data from NSRR</a>
     </li>
   </ul>
@@ -79,10 +82,10 @@
 
       
 
-      </header><script src="downloading_data_nsrr_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="downloading_data_nsrr_files/jquery-1.12.4/jquery.min.js"></script><link href="downloading_data_nsrr_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="downloading_data_nsrr_files/datatables-binding-0.8/datatables.js"></script><link href="downloading_data_nsrr_files/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="downloading_data_nsrr_files/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="downloading_data_nsrr_files/dt-core-1.10.16/js/jquery.dataTables.min.js"></script><link href="downloading_data_nsrr_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+      </header><script src="downloading_data_nsrr_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="downloading_data_nsrr_files/jquery-1.12.4/jquery.min.js"></script><link href="downloading_data_nsrr_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="downloading_data_nsrr_files/datatables-binding-0.10/datatables.js"></script><link href="downloading_data_nsrr_files/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="downloading_data_nsrr_files/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="downloading_data_nsrr_files/dt-core-1.10.19/js/jquery.dataTables.min.js"></script><link href="downloading_data_nsrr_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
 <script src="downloading_data_nsrr_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -134,8 +137,8 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nsrr)</a>
 <a class="sourceLine" id="cb3-2" title="2">df =<span class="st"> </span><span class="kw"><a href="../reference/nsrr_datasets.html">nsrr_datasets</a></span>()</a>
 <a class="sourceLine" id="cb3-3" title="3">DT<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span>(df)</a></code></pre></div>
-<div id="htmlwidget-d76f1ae9b844e34092b7" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d76f1ae9b844e34092b7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["Apnea, Bariatric surgery, and CPAP study","Best Apnea Interventions in Research","Childhood Adenotonsillectomy Trial","Cleveland Children's Sleep and Health Study","Cleveland Family Study","Heart Biomarker Evaluation in Apnea Treatment","Hispanic Community Health Study / Study of Latinos","Home Positive Airway Pressure","Honolulu-Asia Aging Study of Sleep Apnea","Learn","MrOS Sleep Study","Multi-Ethnic Study of Atherosclerosis","One Year of Actigraphy","Sleep Heart Health Study","Study of Osteoporotic Fractures"],["abc","bestair","chat","ccshs","cfs","heartbeat","hchs","homepap","haassa","learn","mros","mesa","oya","shhs","sof"],["2014-07-11T16:32:56.676-04:00","2013-10-31T11:46:58.631-04:00","2013-10-31T11:46:21.675-04:00","2015-09-02T12:16:35.426-04:00","2014-06-24T14:36:20.767-04:00","2014-03-06T14:17:57.925-05:00","2014-07-11T17:02:18.887-04:00","2014-07-11T17:18:14.133-04:00","2014-07-11T16:48:04.444-04:00","2017-01-26T16:05:10.972-05:00","2013-12-09T10:50:39.511-05:00","2014-02-25T13:41:27.478-05:00","2018-08-08T08:55:42.601-04:00","2013-10-23T13:40:01.590-04:00","2014-07-11T16:54:42.819-04:00"],["2018-10-16T10:34:25.135-04:00","2019-06-24T13:01:07.877-04:00","2018-10-16T10:29:52.632-04:00","2019-06-13T12:36:05.349-04:00","2018-10-16T10:31:24.294-04:00","2018-10-16T10:30:22.711-04:00","2019-07-29T10:19:38.466-04:00","2019-05-14T13:30:05.116-04:00","2018-10-16T10:32:29.951-04:00","2019-03-27T07:23:48.102-04:00","2018-10-16T10:30:44.757-04:00","2019-05-07T08:42:53.723-04:00","2018-10-16T10:35:51.222-04:00","2019-05-29T14:00:07.967-04:00","2018-10-16T10:31:06.912-04:00"],["/datasets/abc.json","/datasets/bestair.json","/datasets/chat.json","/datasets/ccshs.json","/datasets/cfs.json","/datasets/heartbeat.json","/datasets/hchs.json","/datasets/homepap.json","/datasets/haassa.json","/datasets/learn.json","/datasets/mros.json","/datasets/mesa.json","/datasets/oya.json","/datasets/shhs.json","/datasets/sof.json"],["/datasets/abc/files.json","/datasets/bestair/files.json","/datasets/chat/files.json","/datasets/ccshs/files.json","/datasets/cfs/files.json","/datasets/heartbeat/files.json","/datasets/hchs/files.json","/datasets/homepap/files.json","/datasets/haassa/files.json","/datasets/learn/files.json","/datasets/mros/files.json","/datasets/mesa/files.json","/datasets/oya/files.json","/datasets/shhs/files.json","/datasets/sof/files.json"],[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>slug<\/th>\n      <th>created_at<\/th>\n      <th>updated_at<\/th>\n      <th>path<\/th>\n      <th>files<\/th>\n      <th>page<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":7},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-60c40e0c97275587c363" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-60c40e0c97275587c363">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["Apnea, Bariatric surgery, and CPAP study","Best Apnea Interventions in Research","Childhood Adenotonsillectomy Trial","Cleveland Children's Sleep and Health Study","Cleveland Family Study","Heart Biomarker Evaluation in Apnea Treatment","Hispanic Community Health Study / Study of Latinos","Home Positive Airway Pressure","Honolulu-Asia Aging Study of Sleep Apnea","Learn","MrOS Sleep Study","Multi-Ethnic Study of Atherosclerosis","One Year of Actigraphy","Sleep Heart Health Study","Study of Osteoporotic Fractures"],["abc","bestair","chat","ccshs","cfs","heartbeat","hchs","homepap","haassa","learn","mros","mesa","oya","shhs","sof"],["2014-07-11T16:32:56.676-04:00","2013-10-31T11:46:58.631-04:00","2013-10-31T11:46:21.675-04:00","2015-09-02T12:16:35.426-04:00","2014-06-24T14:36:20.767-04:00","2014-03-06T14:17:57.925-05:00","2014-07-11T17:02:18.887-04:00","2014-07-11T17:18:14.133-04:00","2014-07-11T16:48:04.444-04:00","2017-01-26T16:05:10.972-05:00","2013-12-09T10:50:39.511-05:00","2014-02-25T13:41:27.478-05:00","2018-08-08T08:55:42.601-04:00","2013-10-23T13:40:01.590-04:00","2014-07-11T16:54:42.819-04:00"],["2018-10-16T10:34:25.135-04:00","2019-06-24T13:01:07.877-04:00","2019-11-18T09:29:30.748-05:00","2019-11-18T09:47:57.138-05:00","2019-11-18T09:11:49.877-05:00","2018-10-16T10:30:22.711-04:00","2019-07-29T10:19:38.466-04:00","2019-05-14T13:30:05.116-04:00","2018-10-16T10:32:29.951-04:00","2019-03-27T07:23:48.102-04:00","2019-11-18T10:17:29.198-05:00","2019-05-07T08:42:53.723-04:00","2018-10-16T10:35:51.222-04:00","2019-11-18T08:09:27.872-05:00","2019-11-18T09:40:57.547-05:00"],["/datasets/abc.json","/datasets/bestair.json","/datasets/chat.json","/datasets/ccshs.json","/datasets/cfs.json","/datasets/heartbeat.json","/datasets/hchs.json","/datasets/homepap.json","/datasets/haassa.json","/datasets/learn.json","/datasets/mros.json","/datasets/mesa.json","/datasets/oya.json","/datasets/shhs.json","/datasets/sof.json"],["/datasets/abc/files.json","/datasets/bestair/files.json","/datasets/chat/files.json","/datasets/ccshs/files.json","/datasets/cfs/files.json","/datasets/heartbeat/files.json","/datasets/hchs/files.json","/datasets/homepap/files.json","/datasets/haassa/files.json","/datasets/learn/files.json","/datasets/mros/files.json","/datasets/mesa/files.json","/datasets/oya/files.json","/datasets/shhs/files.json","/datasets/sof/files.json"],[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>slug<\/th>\n      <th>created_at<\/th>\n      <th>updated_at<\/th>\n      <th>path<\/th>\n      <th>files<\/th>\n      <th>page<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":7},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="nsrr-data-set-files" class="section level3">
 <h3 class="hasAnchor">
@@ -145,25 +148,25 @@
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(df)</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;   dataset                         full_path    folder</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; 1    shhs                  datasets/archive datasets/</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 2    shhs    datasets/eeg-spectral-analysis datasets/</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 3    shhs             datasets/hrv-analysis datasets/</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 4    shhs             datasets/CHANGELOG.md datasets/</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; 5    shhs           datasets/KNOWNISSUES.md datasets/</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 6    shhs datasets/shhs1-dataset-0.14.0.csv datasets/</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 2    shhs             datasets/hrv-analysis datasets/</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 3    shhs             datasets/CHANGELOG.md datasets/</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 4    shhs           datasets/KNOWNISSUES.md datasets/</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; 5    shhs datasets/shhs1-dataset-0.15.0.csv datasets/</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 6    shhs datasets/shhs2-dataset-0.15.0.csv datasets/</span></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;                  file_name is_file file_size</span></a>
 <a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 1                  archive   FALSE         0</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 2    eeg-spectral-analysis   FALSE         0</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 3             hrv-analysis   FALSE         0</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 4             CHANGELOG.md    TRUE     10735</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 5           KNOWNISSUES.md    TRUE     11421</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 6 shhs1-dataset-0.14.0.csv    TRUE  24322962</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 2             hrv-analysis   FALSE         0</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 3             CHANGELOG.md    TRUE     11010</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 4           KNOWNISSUES.md    TRUE     11421</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 5 shhs1-dataset-0.15.0.csv    TRUE  24322962</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 6 shhs2-dataset-0.15.0.csv    TRUE  11897377</span></a>
 <a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt;                  file_checksum_md5 archived</span></a>
 <a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; 1                             &lt;NA&gt;    FALSE</span></a>
 <a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; 2                             &lt;NA&gt;    FALSE</span></a>
-<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt; 3                             &lt;NA&gt;    FALSE</span></a>
-<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; 4 d791744c06a1ed92bdc0114c27b3bc92    FALSE</span></a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; 5 8598129123baa60e16977dc24aa780af    FALSE</span></a>
-<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; 6 3f26d37ec97e2bc88776850a31715398    FALSE</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt; 3 69bb54a32cdfc7bdddc13276b7c858c1    FALSE</span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; 4 8598129123baa60e16977dc24aa780af    FALSE</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; 5 3f26d37ec97e2bc88776850a31715398    FALSE</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; 6 21807d854010f036fd0d4f006eeed49d    FALSE</span></a></code></pre></div>
 </div>
 <div id="downloading-nsrr-data-set-files" class="section level3">
 <h3 class="hasAnchor">
@@ -171,17 +174,17 @@
 <p>We can then download the <code>CHANGELOG.md</code> file as it’s publicly accessible.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">url =<span class="st"> </span><span class="kw"><a href="../reference/nsrr_download_url.html">nsrr_download_url</a></span>(<span class="st">"shhs"</span>, <span class="dt">path =</span> <span class="st">"datasets/CHANGELOG.md"</span>, <span class="dt">token =</span> <span class="st">""</span>)</a>
 <a class="sourceLine" id="cb5-2" title="2">url <span class="co"># print URL</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; [1] "https://sleepdata.org/datasets/shhs/files/m/nsrr-r-v0-1-3/datasets/CHANGELOG.md"</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; [1] "https://sleepdata.org/datasets/shhs/files/m/nsrr-r-v0-1-4/datasets/CHANGELOG.md"</span></a>
 <a class="sourceLine" id="cb5-4" title="4">dl =<span class="st"> </span><span class="kw"><a href="../reference/nsrr_download_url.html">nsrr_download_file</a></span>(<span class="st">"shhs"</span>, <span class="dt">path =</span> <span class="st">"datasets/CHANGELOG.md"</span>, <span class="dt">token =</span> <span class="st">""</span>)</a>
 <a class="sourceLine" id="cb5-5" title="5">dl<span class="op">$</span>outfile</a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmpstcb0c/file91e26d62f93f.md"</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; [1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpJp1F6m/fileb2b4a8a56b6.md"</span></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(dl<span class="op">$</span>outfile)), <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; ## 0.14.0 (May 29, 2019)</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; ## 0.15.0 (November 18, 2019)</span></a>
 <a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; - Re-add OXIMET51 variable to SHHS1 dataset</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; - Add ESS_INTERIM variable; computed Epworth score for Interim Follow-up Visit (range 0-24)</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; - Remove EEG spectral summary variables</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; - Add notes to height and weight varibles about top and bottom coding</span></a>
 <a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; - The CSV datasets generated from a SAS export are located here:</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;   - `\\rfawin\bwh-sleepepi-shhs\nsrr-prep\_releases\0.14.0\`</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;   - `\\rfawin\bwh-sleepepi-shhs\nsrr-prep\_releases\0.15.0\`</span></a></code></pre></div>
 </div>
 <div id="listing-all-nsrr-data-set-files" class="section level3">
 <h3 class="hasAnchor">

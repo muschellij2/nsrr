@@ -7,8 +7,7 @@
 \usage{
 nsrr_download_url(dataset, path, token = nsrr_token())
 
-nsrr_download_file(dataset, path, token = nsrr_token(),
-  check_md5 = TRUE)
+nsrr_download_file(dataset, path, token = nsrr_token(), check_md5 = TRUE)
 }
 \arguments{
 \item{dataset}{a dataset \code{"slug"}, one from

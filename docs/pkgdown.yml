@@ -2,5 +2,6 @@ pandoc: '2.4'
 pkgdown: 1.4.0
 pkgdown_sha: ~
 articles:
+  dictionary: dictionary.html
   downloading_data_nsrr: downloading_data_nsrr.html
 

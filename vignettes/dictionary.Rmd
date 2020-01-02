@@ -1,0 +1,77 @@
+---
+title: "Downloading All Data Dictionaries"
+output: rmarkdown::html_vignette
+vignette: >
+%\VignetteIndexEntry{dictionary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  ---
+  
+  ```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>"
+)
+```
+
+```{r setup}
+library(nsrr)
+```
+
+# Get all Data Set Slugs
+
+```{r}
+library(nsrr)
+df = nsrr_datasets()
+head(df)
+```
+
+Here we will loop through each data set to get a list of the files in the `datasets/` path:
+```{r}
+datasets = df$slug
+L = vector(mode = "list", length = length(datasets))
+names(L) = datasets
+for (dataset in datasets) {
+  a = nsrr_dataset_files(dataset = dataset, path = "datasets")
+  L[[dataset]] = a
+  print(dataset)
+}
+head(L[[1]])
+```
+
+Let's subset the data on only the files we want to find (data dictionaries):
+```{r subsetfiles}
+files = lapply(L, function(x) {
+  if (length(x) == 0) {
+    return(NULL)
+  }
+  x[ grepl("dictionary", tolower(x$file_name)),]
+})
+files = do.call("rbind", files)
+rownames(files) = NULL
+head(files)
+vars = files[ grepl("variables", tolower(files$file_name)),]
+head(vars)
+```
+
+Here we will download one of the data dictionaries:
+
+```{r dl}
+i = 3
+# for (i in seq(nrow(vars))) {
+  idf = vars[i,]
+  out = nsrr::nsrr_download_file(
+    dataset = idf$dataset, 
+    path = idf$full_path,
+    check_md5 = FALSE
+  )
+  if (requireNamespace("readr", quietly = TRUE)) {
+    var_df = readr::read_csv(out$outfile)
+  } else {
+    var_df = utils::read.csv(out$outfile, as.is = TRUE)
+  }
+  print(head(var_df))
+# }
+```
+
+Run the outer loop and bind the data together using a similar list of `data.frame`s as above to get all the variables from all data sets.

@@ -25,10 +25,11 @@ Suggests:
     rmarkdown,
     testthat,
     xml2,
-    rvest
+    rvest,
+    readr
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/muschellij2/nsrr
 BugReports: https://github.com/muschellij2/nsrr/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

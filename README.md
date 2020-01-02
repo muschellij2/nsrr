@@ -9,8 +9,8 @@
 status](https://travis-ci.com/muschellij2/nsrr.svg?branch=master)](https://travis-ci.com/muschellij2/nsrr)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/nsrr?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/nsrr)
-[![Coverage
-status](https://codecov.io/gh/muschellij2/nsrr/branch/master/graph/badge.svg)](https://codecov.io/gh/muschellij2/nsrr)
+[![Codecov test
+coverage](https://codecov.io/gh/muschellij2/nsrr/branch/master/graph/badge.svg)](https://codecov.io/gh/muschellij2/nsrr?branch=master)
 <!-- badges: end -->
 
 The goal of nsrr is to allow users to access data from the National
@@ -104,25 +104,25 @@ df = nsrr_dataset_files("shhs", path = "datasets")
 head(df)
   dataset                         full_path    folder
 1    shhs                  datasets/archive datasets/
-2    shhs    datasets/eeg-spectral-analysis datasets/
-3    shhs             datasets/hrv-analysis datasets/
-4    shhs             datasets/CHANGELOG.md datasets/
-5    shhs           datasets/KNOWNISSUES.md datasets/
-6    shhs datasets/shhs1-dataset-0.14.0.csv datasets/
+2    shhs             datasets/hrv-analysis datasets/
+3    shhs             datasets/CHANGELOG.md datasets/
+4    shhs           datasets/KNOWNISSUES.md datasets/
+5    shhs datasets/shhs1-dataset-0.15.0.csv datasets/
+6    shhs datasets/shhs2-dataset-0.15.0.csv datasets/
                  file_name is_file file_size
 1                  archive   FALSE         0
-2    eeg-spectral-analysis   FALSE         0
-3             hrv-analysis   FALSE         0
-4             CHANGELOG.md    TRUE     10735
-5           KNOWNISSUES.md    TRUE     11421
-6 shhs1-dataset-0.14.0.csv    TRUE  24322962
+2             hrv-analysis   FALSE         0
+3             CHANGELOG.md    TRUE     11010
+4           KNOWNISSUES.md    TRUE     11421
+5 shhs1-dataset-0.15.0.csv    TRUE  24322962
+6 shhs2-dataset-0.15.0.csv    TRUE  11897377
                  file_checksum_md5 archived
 1                             <NA>    FALSE
 2                             <NA>    FALSE
-3                             <NA>    FALSE
-4 d791744c06a1ed92bdc0114c27b3bc92    FALSE
-5 8598129123baa60e16977dc24aa780af    FALSE
-6 3f26d37ec97e2bc88776850a31715398    FALSE
+3 69bb54a32cdfc7bdddc13276b7c858c1    FALSE
+4 8598129123baa60e16977dc24aa780af    FALSE
+5 3f26d37ec97e2bc88776850a31715398    FALSE
+6 21807d854010f036fd0d4f006eeed49d    FALSE
 ```
 
 ### Downloading NSRR data set files
@@ -135,14 +135,14 @@ url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md")
 # print URL
 dl = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md")
 dl$outfile
-[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpobAxbi/file8ea84b43a39b.md"
+[1] "/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpJUlkmk/filea17e12cd407.md"
 cat(head(readLines(dl$outfile)), sep = "\n")
-## 0.14.0 (May 29, 2019)
+## 0.15.0 (November 18, 2019)
 
-- Re-add OXIMET51 variable to SHHS1 dataset
-- Add ESS_INTERIM variable; computed Epworth score for Interim Follow-up Visit (range 0-24)
+- Remove EEG spectral summary variables
+- Add notes to height and weight varibles about top and bottom coding
 - The CSV datasets generated from a SAS export are located here:
-  - `\\rfawin\bwh-sleepepi-shhs\nsrr-prep\_releases\0.14.0\`
+  - `\\rfawin\bwh-sleepepi-shhs\nsrr-prep\_releases\0.15.0\`
 ```
 
 ### Listing All NSRR data set files
