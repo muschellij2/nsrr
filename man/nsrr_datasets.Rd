@@ -39,7 +39,11 @@ slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
 "heartbeat", "hchs", "homepap", "haassa", "learn")
 testthat::expect_true(all(slugs \%in\% df$slug))
 }
-\donttest{
+on_cran = !identical(Sys.getenv("NOT_CRAN"), "true")
+on_ci <- nzchar(Sys.getenv("CI"))
+local_run = grepl("musch", tolower(Sys.info()[["user"]]))
+run_example = !on_cran || on_ci || local_run
+if (run_example) {
 df = nsrr_datasets(page = 1)
 }
 nsrr_dataset(dataset = "shhs", token = "")
