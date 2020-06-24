@@ -110,9 +110,7 @@ nsrr_dataset = function(
 #' dataset = "shhs"
 #' token = NULL
 #' df = nsrr_dataset_files(dataset)
-#' testthat::expect_error(
-#' nsrr_dataset_files(dataset = "wecare"),
-#' "No files")
+#' nsrr_dataset_files(dataset = "wecare")
 #'
 #' testthat::expect_error(nsrr_dataset_files(), "one data")
 #' testthat::expect_error(nsrr_dataset_files(c("shhs", "chat")), "one data")
@@ -144,14 +142,13 @@ nsrr_dataset_files = function(
 
   httr::stop_for_status(res)
   cr = httr::content(res)
-  if (is.null(cr)) {
+  x = httr::content(res, as = "text")
+  if (is.null(cr) ||
+      (is.character(x) && all(x == ""))) {
     warning("Content was NULL, returning the response for debugging")
     return(res)
   }
-  x = httr::content(res, as = "text")
-  if (is.character(x) && all(x == "")) {
-    stop("No files returned")
-  }
+
   x = jsonlite::fromJSON(x, flatten = TRUE)
   attr(x, "status_code") = httr::status_code(res)
   return(x)
