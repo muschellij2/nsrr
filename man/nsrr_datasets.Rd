@@ -56,7 +56,9 @@ ddf = nsrr_dataset_files(dataset, path = df$full_path[1])
 dataset = "shhs"
 token = NULL
 df = nsrr_dataset_files(dataset)
-nsrr_dataset_files("wecare")
+testthat::expect_error(
+nsrr_dataset_files(dataset = "wecare"),
+"No files")
 
 testthat::expect_error(nsrr_dataset_files(), "one data")
 testthat::expect_error(nsrr_dataset_files(c("shhs", "chat")), "one data")

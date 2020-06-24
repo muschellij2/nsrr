@@ -41,13 +41,11 @@ nsrr_have_token = function(token = NULL) {
 #' @export
 #' @rdname nsrr_token
 nsrr_auth = function(token = NULL) {
-  token = nsrr_token(token = token)
 
-  url = paste0(nsrr_api_url(), "/account/profile.json")
-
-  query = list()
-  query$auth_token = token
-  res = httr::GET(url, query = query)
+  res = nsrr_api(
+    path = "/account/profile.json",
+    query = list(),
+    token = token)
   result = httr::content(res)
   result
 }

@@ -28,15 +28,19 @@ NSRR Download file
 }
 \examples{
 if (requireNamespace("xml2", quietly = TRUE) &
-requireNamespace("rvest", quietly = TRUE)) {
-doc = xml2::read_html("https://sleepdata.org/datasets/shhs/files/datasets")
-tab = rvest::html_table(doc)[[1]]
-path = tab$X2
-path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
-path = path[1]
-path = paste0("datasets/", path)
+    requireNamespace("rvest", quietly = TRUE)) {
+  res = httr::with_config(
+    config = httr::config(ssl_verifypeer = FALSE),
+    httr::GET("https://sleepdata.org/datasets/shhs/files/datasets")
+  )
+  doc = httr::content(res)
+  tab = rvest::html_table(doc)[[1]]
+  path = tab$X2
+  path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
+  path = path[1]
+  path = paste0("datasets/", path)
 } else {
-path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
+  path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
 }
 dataset = "shhs"
 nsrr_download_url(dataset, path, token = "")

@@ -10,15 +10,19 @@
 #'
 #' @examples
 #' if (requireNamespace("xml2", quietly = TRUE) &
-#' requireNamespace("rvest", quietly = TRUE)) {
-#' doc = xml2::read_html("https://sleepdata.org/datasets/shhs/files/datasets")
-#' tab = rvest::html_table(doc)[[1]]
-#' path = tab$X2
-#' path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
-#' path = path[1]
-#' path = paste0("datasets/", path)
+#'     requireNamespace("rvest", quietly = TRUE)) {
+#'   res = httr::with_config(
+#'     config = httr::config(ssl_verifypeer = FALSE),
+#'     httr::GET("https://sleepdata.org/datasets/shhs/files/datasets")
+#'   )
+#'   doc = httr::content(res)
+#'   tab = rvest::html_table(doc)[[1]]
+#'   path = tab$X2
+#'   path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
+#'   path = path[1]
+#'   path = paste0("datasets/", path)
 #' } else {
-#' path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
+#'   path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
 #' }
 #' dataset = "shhs"
 #' nsrr_download_url(dataset, path, token = "")
@@ -50,20 +54,20 @@ nsrr_download_url = function(
       token = NULL
     }
   }
-  fname = file.path(
+  fname = paste(
     nsrr_website(),
     "datasets",
     dataset,
-    "files")
+    "files", sep = "/")
   if (!is.null(token)) {
-    fname = file.path(fname, paste0("a/", token))
+    fname = paste(fname, paste0("a/", token), sep = "/")
   }
-  fname = file.path(
+  fname = paste(
     fname,
     "m",
     paste0("nsrr-r-v", gsub("[.]", "-", ver)),
     # paste0("nsrr-gem-v", gsub("[.]", "-", ver)),
-    path)
+    path, sep = "/")
   return(fname)
 }
 
@@ -85,11 +89,14 @@ nsrr_download_file = function(
   tfile = tempfile(fileext = paste0(".", ext))
   query = list()
   query$auth_token = token
-  res = httr::GET(
-    url,
-    if (interactive()) httr::progress(),
-    httr::write_disk(path = tfile),
-    query = query
+  res = httr::with_config(
+    config = httr::config(ssl_verifypeer = FALSE),
+    httr::GET(
+      url,
+      if (interactive()) httr::progress(),
+      httr::write_disk(path = tfile),
+      query = query
+    )
   )
   raw_content = httr::content(res, as = "raw")
   size <- length(raw_content)

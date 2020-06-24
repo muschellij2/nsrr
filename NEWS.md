@@ -1,3 +1,8 @@
+# nsrr 0.2.0
+
+- Major refactor, especially with SSL certificate problems
+- Next release to CRAN.
+
 # nsrr 0.1.4
 
 - Minor fixes to vignette due to `pandoc`. 

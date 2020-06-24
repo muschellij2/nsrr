@@ -29,20 +29,26 @@
 #' }
 nsrr_datasets = function(token = nsrr_token(),
                          page = NULL) {
-  website = nsrr_api_url()
-  datasets = paste0(website, "/datasets.json")
+  # website = nsrr_api_url()
+  # datasets = paste0(website, "/datasets.json")
+  max_pages = 100
+  check_max = TRUE
   if (is.null(page)) {
-    pages = 1:20
+    pages = 1:max_pages
   } else {
     pages = page
+    check_max = FALSE
   }
   df = vector(mode = "list", length = length(pages))
   for (ipage in seq_along(pages)) {
     page = pages[ipage]
     query = list()
-    query$auth_token = token
     query$page = page
-    res = httr::GET(datasets, query = query)
+    res = nsrr_api(
+      path = "/datasets.json",
+      query = query,
+      token = token)
+    # res = httr::GET(datasets, query = query)
     x = httr::content(res, as = "text")
     x = jsonlite::fromJSON(x, flatten = TRUE)
     if (NROW(x) > 0) {
@@ -56,6 +62,13 @@ nsrr_datasets = function(token = nsrr_token(),
     } else {
       break
     }
+  }
+  if (check_max && ipage >= max_pages) {
+    warning(
+      paste0(
+        "May not have received all data - pass in page",
+        " argument to paginate through")
+    )
   }
   x = do.call("rbind", df)
   attr(x, "status_code") = unique(x$status_code)
@@ -72,11 +85,10 @@ nsrr_dataset = function(
   dataset = NULL,
   token = nsrr_token()) {
 
-  website = nsrr_api_url()
-  datasets = paste0(website, "/datasets/", dataset, ".json")
-  query = list()
-  query$auth_token = token
-  res = httr::GET(datasets, query = query)
+  res = nsrr_api(
+    path = paste0("/datasets/", dataset, ".json"),
+    token = token)
+
   x = httr::content(res, as = "text")
   x = jsonlite::fromJSON(x, flatten = TRUE)
   attr(x, "status_code") = httr::status_code(res)
@@ -98,7 +110,9 @@ nsrr_dataset = function(
 #' dataset = "shhs"
 #' token = NULL
 #' df = nsrr_dataset_files(dataset)
-#' nsrr_dataset_files("wecare")
+#' testthat::expect_error(
+#' nsrr_dataset_files(dataset = "wecare"),
+#' "No files")
 #'
 #' testthat::expect_error(nsrr_dataset_files(), "one data")
 #' testthat::expect_error(nsrr_dataset_files(c("shhs", "chat")), "one data")
@@ -114,25 +128,30 @@ nsrr_dataset_files = function(
     stop(msg)
   }
   df = nsrr_datasets(token = token)
-  url = nsrr_api_url()
   if (!dataset %in% df$slug) {
     warning("Dataset not in set from NSRR")
-    url = paste0(url, "/datasets/", dataset, "/files.json")
+    run_path = paste0("/datasets/", dataset, "/files.json")
   } else {
     idf = df[ df$slug %in% dataset, ]
-    url = paste0(url, idf$files)
+    run_path = idf$files
   }
   query = list()
-  query$auth_token = token
   query$path = path
-  res = httr::GET(url, query = query)
+  res = nsrr_api(
+    path = run_path,
+    query = query,
+    token = token)
+
   httr::stop_for_status(res)
   cr = httr::content(res)
   if (is.null(cr)) {
-    warning("Content was NULL, returning the response for debuggin")
+    warning("Content was NULL, returning the response for debugging")
     return(res)
   }
   x = httr::content(res, as = "text")
+  if (is.character(x) && all(x == "")) {
+    stop("No files returned")
+  }
   x = jsonlite::fromJSON(x, flatten = TRUE)
   attr(x, "status_code") = httr::status_code(res)
   return(x)
