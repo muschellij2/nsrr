@@ -207,9 +207,11 @@ less than 18 indicates the last page.</p></td>
 <span class='no'>dataset</span> <span class='kw'>=</span> <span class='st'>"shhs"</span>
 <span class='no'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 <span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>nsrr_dataset_files</span>(<span class='no'>dataset</span>)
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/expect_error.html'>expect_error</a></span>(
-<span class='fu'>nsrr_dataset_files</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"wecare"</span>),
-<span class='st'>"No files"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='input'>
+<span class='fu'>nsrr_dataset_files</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"wecare"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dataset not in set from NSRR</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Content was NULL, returning the response for debugging</span></div><div class='output co'>#&gt; Response [https://sleepdata.org/api/v1/datasets/wecare/files.json?auth_token=4207-xsBwXDB5bhywfH-yPvsc]
+#&gt;   Date: 2020-06-24 16:32
+#&gt;   Status: 204
+#&gt;   Content-Type: &lt;unknown&gt;
+#&gt; &lt;EMPTY BODY&gt;</div><div class='input'>
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/expect_error.html'>expect_error</a></span>(<span class='fu'>nsrr_dataset_files</span>(), <span class='st'>"one data"</span>)
 <span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/expect_error.html'>expect_error</a></span>(<span class='fu'>nsrr_dataset_files</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"shhs"</span>, <span class='st'>"chat"</span>)), <span class='st'>"one data"</span>)</div></pre>
   </div>
