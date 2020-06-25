@@ -48,7 +48,16 @@ nsrr_datasets = function(token = nsrr_token(),
       path = "/datasets.json",
       query = query,
       token = token)
+    if (httr::status_code(res) == 500) {
+      warning(
+        paste0(
+          "Please contact the NSRR Team - the server",
+          " has indicated an error, returning NULL"
+          ))
+      return(NULL)
+    }
     # res = httr::GET(datasets, query = query)
+    httr::stop_for_status(res)
     x = httr::content(res, as = "text")
     x = jsonlite::fromJSON(x, flatten = TRUE)
     if (NROW(x) > 0) {
