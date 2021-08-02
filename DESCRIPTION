@@ -1,7 +1,7 @@
 Type: Package
 Package: nsrr
 Title: Interface to National Sleep Research Resource
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person(given = "John",
            family = "Muschelli",
@@ -28,8 +28,7 @@ Suggests:
     rvest,
     readr
 Encoding: UTF-8
-LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/muschellij2/nsrr
 BugReports: https://github.com/muschellij2/nsrr/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

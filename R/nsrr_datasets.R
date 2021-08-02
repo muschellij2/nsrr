@@ -15,17 +15,17 @@
 #' @examples
 #' df = nsrr_datasets()
 #' if (attributes(df)$status_code == 200) {
-#' testthat::expect_is(df, "data.frame")
-#' slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
-#' "heartbeat", "hchs", "homepap", "haassa", "learn")
-#' testthat::expect_true(all(slugs %in% df$slug))
+#'   testthat::expect_is(df, "data.frame")
+#'   slugs = c("abc", "bestair", "chat", "ccshs", "cfs",
+#'             "heartbeat", "hchs", "homepap", "haassa", "learn")
+#'   testthat::expect_true(all(slugs %in% df$slug))
 #' }
 #' on_cran = !identical(Sys.getenv("NOT_CRAN"), "true")
 #' on_ci <- nzchar(Sys.getenv("CI"))
 #' local_run = grepl("musch", tolower(Sys.info()[["user"]]))
 #' run_example = !on_cran || on_ci || local_run
 #' if (run_example) {
-#' df = nsrr_datasets(page = 1)
+#'   df = nsrr_datasets(page = 1)
 #' }
 nsrr_datasets = function(token = nsrr_token(),
                          page = NULL) {

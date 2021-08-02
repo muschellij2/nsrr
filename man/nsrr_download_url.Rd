@@ -33,14 +33,18 @@ if (requireNamespace("xml2", quietly = TRUE) &
     config = httr::config(ssl_verifypeer = FALSE),
     httr::GET("https://sleepdata.org/datasets/shhs/files/datasets")
   )
-  doc = httr::content(res)
-  tab = rvest::html_table(doc)[[1]]
-  path = tab$X2
-  path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
-  path = path[1]
-  path = paste0("datasets/", path)
+  if (httr::status_code(res) < 400) {
+    doc = httr::content(res)
+    tab = rvest::html_table(doc)[[1]]
+    path = tab$X2
+    path = path[ grepl("shhs-data-dictionary-.*-domains", path)]
+    path = path[1]
+    path = paste0("datasets/", path)
+  } else {
+    path = "datasets/shhs-data-dictionary-0.16.0-domains.csv"
+  }
 } else {
-  path = "datasets/shhs-data-dictionary-0.14.0-domains.csv"
+  path = "datasets/shhs-data-dictionary-0.16.0-domains.csv"
 }
 dataset = "shhs"
 nsrr_download_url(dataset, path, token = "")
@@ -55,7 +59,9 @@ token = NULL)
 res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
 token = NULL)
 testthat::expect_true(res$correct_md5)
-res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
-token = NULL, check_md5 = FALSE)
-testthat::expect_null(res$correct_md5)
+\donttest{
+  res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
+                           token = NULL, check_md5 = FALSE)
+  testthat::expect_null(res$correct_md5)
+}
 }
