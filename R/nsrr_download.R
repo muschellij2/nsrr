@@ -31,20 +31,23 @@
 #' dataset = "shhs"
 #' nsrr_download_url(dataset, path, token = "")
 #' if (nsrr_have_token()) {
-#' res = nsrr_download_file(dataset, path)
-#' testthat::expect_true(res$success)
-#' path = "biostatistics-with-r/shhs1.txt"
-#' res = nsrr_download_file(dataset, path)
+#'   res = nsrr_download_file(dataset, path, check_md5 = FALSE,
+#'                            check_filesize = FALSE)
+#'   testthat::expect_true(res$success)
 #' }
 #' url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md",
-#' token = NULL)
+#'                         token = NULL)
 #' res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
-#' token = NULL)
+#'                          token = NULL)
 #' testthat::expect_true(res$correct_md5)
 #' \donttest{
 #'   res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
 #'                            token = NULL, check_md5 = FALSE)
 #'   testthat::expect_null(res$correct_md5)
+#'   if (nsrr_have_token()) {
+#'     path = "biostatistics-with-r/shhs1.txt"
+#'     res = nsrr_download_file(dataset, path)
+#'   }
 #' }
 nsrr_download_url = function(
   dataset,
@@ -80,17 +83,21 @@ nsrr_download_url = function(
 #' @export
 #' @rdname nsrr_download_url
 #' @param check_md5 check if MD5 checksum agrees when downloaded
+#' @param check_filesize check the file size versus the `API`
 #' @importFrom digest digest
 nsrr_download_file = function(
   dataset, path,
   token = nsrr_token(),
-  check_md5 = TRUE
+  check_md5 = TRUE,
+  check_filesize = TRUE
 ) {
   stopifnot(length(path) == 1)
   url = nsrr_download_url(dataset, path, token = token)
-  file_size = nsrr_dataset_files(dataset, path = path, token = token)
-  file_md5 = file_size$file_checksum_md5
-  file_size = file_size$file_size
+  if (check_filesize || check_md5) {
+    file_size = nsrr_dataset_files(dataset, path = path, token = token)
+    file_md5 = file_size$file_checksum_md5
+    file_size = file_size$file_size
+  }
   ext = tools::file_ext(url)
   tfile = tempfile(fileext = paste0(".", ext))
   query = list()
@@ -104,9 +111,13 @@ nsrr_download_file = function(
       query = query
     )
   )
-  raw_content = httr::content(res, as = "raw")
-  size <- length(raw_content)
-  correct_size = size == file_size
+  if (!check_filesize) {
+    correct_size = TRUE
+  } else {
+    raw_content = httr::content(res, as = "raw")
+    size <- length(raw_content)
+    correct_size = size == file_size
+  }
   if (check_md5) {
     md5 = digest::digest(tfile, file = TRUE, algo = "md5")
     correct_md5 = md5 == file_md5

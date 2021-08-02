@@ -7,7 +7,13 @@
 \usage{
 nsrr_download_url(dataset, path, token = nsrr_token())
 
-nsrr_download_file(dataset, path, token = nsrr_token(), check_md5 = TRUE)
+nsrr_download_file(
+  dataset,
+  path,
+  token = nsrr_token(),
+  check_md5 = TRUE,
+  check_filesize = TRUE
+)
 }
 \arguments{
 \item{dataset}{a dataset \code{"slug"}, one from
@@ -19,6 +25,8 @@ nsrr_download_file(dataset, path, token = nsrr_token(), check_md5 = TRUE)
 \url{https://sleepdata.org/token}}
 
 \item{check_md5}{check if MD5 checksum agrees when downloaded}
+
+\item{check_filesize}{check the file size versus the `API`}
 }
 \value{
 A \code{data.frame} of the data sets and their endpoints
@@ -49,19 +57,22 @@ if (requireNamespace("xml2", quietly = TRUE) &
 dataset = "shhs"
 nsrr_download_url(dataset, path, token = "")
 if (nsrr_have_token()) {
-res = nsrr_download_file(dataset, path)
-testthat::expect_true(res$success)
-path = "biostatistics-with-r/shhs1.txt"
-res = nsrr_download_file(dataset, path)
+  res = nsrr_download_file(dataset, path, check_md5 = FALSE,
+                           check_filesize = FALSE)
+  testthat::expect_true(res$success)
 }
 url = nsrr_download_url("shhs", path = "datasets/CHANGELOG.md",
-token = NULL)
+                        token = NULL)
 res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
-token = NULL)
+                         token = NULL)
 testthat::expect_true(res$correct_md5)
 \donttest{
   res = nsrr_download_file("shhs", path = "datasets/CHANGELOG.md",
                            token = NULL, check_md5 = FALSE)
   testthat::expect_null(res$correct_md5)
+  if (nsrr_have_token()) {
+    path = "biostatistics-with-r/shhs1.txt"
+    res = nsrr_download_file(dataset, path)
+  }
 }
 }

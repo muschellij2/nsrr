@@ -1,3 +1,7 @@
+# nsrr 0.2.1
+
+- Added `check_filesize` to speed up downloads.
+
 # nsrr 0.2.0
 
 - Major refactor, especially with SSL certificate problems
